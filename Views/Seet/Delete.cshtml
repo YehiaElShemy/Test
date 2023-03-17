@@ -1,0 +1,28 @@
+﻿@model projectMVC.viewModel.SeetsViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+    <div class="col-md-6 col-sm-12 col-12">
+
+
+        <h2 class="text-danger text-center text-capitalize">Are you want to deletet seet @Model.Number</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(e => e.ID)
+
+
+            <h2>   @Model.Number</h2>
+            <h2>   @Model.Cost</h2>
+            <h2>   @Model.SeetType</h2>
+           
+
+            <button type="submit" class="btn btn-success my-3 text-capitalize "> delete Employee</button>
+            <a class="btn btn-danger" href="@Url.Action("Index","Seet")"> Cancel </a>
+
+        }
+    </div>
+</div>

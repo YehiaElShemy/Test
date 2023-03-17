@@ -1,0 +1,47 @@
+﻿@model IEnumerable<projectMVC.viewModel.Bills>
+
+<nav class="navbar  navbar-dark bg-dark">
+    <a class="navbar-brand text-light text-capitalize" href="@Url.Action("index","Bill")"> Back to all Days</a>
+
+</nav>
+
+<div class="row my-3">
+
+    @foreach (var item in Model.ToList())
+    {
+        var Names = item.Names.Split(',');
+        <div class="col-sm-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"> Bill  </h5>
+                    <div class="row">
+                        <p class="card-text col-6 text-capitalize">   Casher  </p>
+                        <p class="card-text col-6">  @item.UserName  </p>
+                    </div>
+                    @for (int i = 0; i < Names.Length - 1; i++)
+                    {
+                        var x = Names[i].Split('=');
+
+                        <div class="row">
+                            <p class="card-text col-6 text-capitalize">   Name  </p>
+                            <p class="card-text col-6"> @x[0]   </p>
+                        </div>
+                        <div class="row">
+                            <p class="card-text col-6 text-capitalize">   Amount  </p>
+                            <p class="card-text col-6">  @x[1]  </p>
+                        </div>
+
+                    }
+                    <div class="row">
+                        <p class="card-text col-6 text-capitalize">   Total   </p>
+                        <p class="card-text col-6">  @item.Total </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+</div>
+

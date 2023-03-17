@@ -1,0 +1,48 @@
+﻿@model projectMVC.viewModel.Req
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+
+    <div class="col-md-6 col-sm-12 col-12">
+        <h2 class="text-center text-success text-capitalize py-4 ">  edit Requierment   </h2>
+
+        @using (Html.BeginForm())
+        {
+
+            <div class="form-group d-flex row">
+                <label> Rent </label>
+                <br />
+
+                @Html.TextBoxFor(a => a.Rent, new { @class = " form-control col-12" })
+                @Html.ValidationMessageFor(a => a.Rent)
+            </div>
+            <div class="form-group d-flex row">
+                <label> Water Bill </label>
+                <br />
+
+
+                @Html.TextBoxFor(a => a.WaterBill, new { @class = "form-control col-12" })
+                @Html.ValidationMessageFor(a => a.WaterBill)
+            </div>
+
+            <div class="form-group d-flex row">
+                <label> Electricity Bill </label>
+                <br />
+
+                @Html.TextBoxFor(a => a.ElectricityBill, new { @class = "form-control col -12" })
+                @Html.ValidationMessageFor(a => a.ElectricityBill)
+            </div>
+
+
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success my-3 text-capitalize ">  Edit </button>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+

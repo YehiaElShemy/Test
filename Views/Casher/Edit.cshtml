@@ -1,0 +1,61 @@
+﻿@model projectMVC.viewModel.CasherViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+
+    <div class="col-md-6 col-sm-12 col-12">
+        <h2 class="text-center text-success text-capitalize py-4 ">  edit casher    </h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(e => e.Id)
+
+            <div class="form-group d-flex row">
+
+                @Html.TextBoxFor(a => a.Name, new { @class = " form-control col-12", @placeholder = " Casher Name " })
+                @Html.ValidationMessageFor(a => a.Name)
+            </div>
+            <div class="form-group d-flex row">
+
+                @Html.TextBoxFor(a => a.Phone, new { @class = "form-control col-12", @placeholder = " Casher phone" })
+                @Html.ValidationMessageFor(a => a.Phone)
+            </div>
+
+
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Adress, new { @class = "form-control col -12", @placeholder = "Casher Adress " })
+                @Html.ValidationMessageFor(a => a.Adress)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Salary, new { @class = "form-control col -12", @placeholder = "Casher Salary " })
+                @Html.ValidationMessageFor(a => a.Salary)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.CasherUserName, new { @class = "form-control col -12", @placeholder = "Casher UserName  " })
+                @Html.ValidationMessageFor(a => a.CasherUserName)
+            </div>
+
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.CasherPassword, new { @class = "form-control col -12", @placeholder = "Casher Password " })
+                @Html.ValidationMessageFor(a => a.CasherPassword)
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success my-3 text-capitalize ">  Add </button>
+            </div>
+
+        }
+
+    </div>
+
+</div>

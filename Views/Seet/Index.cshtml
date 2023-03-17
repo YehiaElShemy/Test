@@ -1,0 +1,59 @@
+﻿@model IEnumerable<projectMVC.viewModel.SeetsViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@if (ViewBag.type == projectMVC.enums.BussinessType.Coffie)
+{
+    @Html.Partial("_AdminCoffie")
+}
+else
+{
+    @Html.Partial("_AdminWorkspace")
+
+}
+
+
+
+
+<h1 class=" text-success text-center  my-3">  Manage your Seets </h1>
+
+
+<a class="btn btn-success" href="@Url.Action("Create","Seet")"> Create New Seet </a>
+
+
+<table class="table table-hover">
+
+    <tr>
+        <td scope="col"> Number </td>
+        <td scope="col"> Cost </td>
+        <td scope="col"> Type </td>
+
+
+        <td scope="col"> Edit seet </td>
+
+        <td> Delete seet </td>
+
+    </tr>
+    @foreach (var item in Model)
+
+    {
+<tr>
+    <td scope="row">@item.Number </td>
+    <td> @item.Cost </td>
+    <td> @item.SeetType </td>
+
+
+    <td>
+        <a class="btn btn-primary" href="@Url.Action("Edit","Seet",new {id =item.ID })"> Edit </a>
+    </td>
+
+    <td>
+        <a class="btn btn-danger" href="@Url.Action("Delete","Seet",new {id =item.ID })"> Delete </a>
+    </td>
+</tr>
+    }
+</table>

@@ -1,0 +1,34 @@
+﻿@model projectMVC.viewModel.CasherViewModel
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+    <div class="col-md-6 col-sm-12 col-12">
+
+
+        <h2 class="text-danger text-center text-capitalize">Are you want to deletet Employee @Model.Name</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(e => e.Id)
+
+
+            <h2>   @Model.Name</h2>
+            <h2>   @Model.Phone</h2>
+            <h2>   @Model.Salary</h2>
+            <h2>   @Model.Adress</h2>
+            <h2>   @Model.CasherUserName</h2>
+            <h2>   @Model.CasherPassword</h2>
+
+
+
+            <button type="submit" class="btn btn-success my-3 text-capitalize "> delete casher</button>
+            <a class="btn btn-danger" href="@Url.Action("Index","Casher")"> Cancel </a>
+
+        }
+    </div>
+</div>
+
+
+

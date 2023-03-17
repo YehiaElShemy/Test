@@ -1,0 +1,55 @@
+﻿@model IEnumerable<projectMVC.viewModel.EmployeViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@if (ViewBag.type == projectMVC.enums.BussinessType.Coffie)
+{
+    @Html.Partial("_AdminCoffie")
+}
+else
+{
+    @Html.Partial("_AdminWorkspace")
+
+}
+
+
+<h1 class=" text-success text-center  my-3">  Manage your employee </h1>
+
+
+<a class="btn btn-success" href="@Url.Action("Create","Employ")"> Create New Employe </a>
+
+
+<table class="table table-hover">
+
+    <tr>
+        <td scope="col"> Name </td>
+        <td scope="col"> Phone </td>
+        <td scope="col"> Salary </td>
+        <td scope="col"> Job </td>
+        <td scope="col"> Adress </td>
+        <td scope="col"> Edit Employe </td>
+
+        <td> Delete Employe</td>
+
+    </tr>
+    @foreach (var item in Model)
+
+    {
+        <tr>
+            <td scope="row">@item.Name </td>
+            <td> @item.Phone </td>
+            <td> @item.Salary </td>
+            <td> @item.Job </td>
+            <td> @item.Adress </td>
+            <td>
+                <a class="btn btn-primary" href="@Url.Action("Edit","Employ",new {id =item.Id })"> Edit </a>
+            </td>
+
+            <td>
+                <a class="btn btn-danger" href="@Url.Action("Delete","Employ",new {id =item.Id })"> Delete </a>
+            </td>
+        </tr>
+    }
+</table>

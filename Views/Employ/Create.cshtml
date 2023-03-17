@@ -1,0 +1,56 @@
+﻿@model projectMVC.viewModel.EmployeViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+
+    <div class="col-md-6 col-sm-12 col-12">
+        <h2 class="text-center text-success text-capitalize py-4 ">  add new employee   </h2>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group d-flex row">
+
+                @Html.TextBoxFor(a => a.Name, new { @class = " form-control col-12", @placeholder = " Employe Name " })
+                @Html.ValidationMessageFor(a => a.Name)
+            </div>
+            <div class="form-group d-flex row">
+
+                @Html.TextBoxFor(a => a.Phone, new { @class = "form-control col-12", @placeholder = " Employe phone" })
+                @Html.ValidationMessageFor(a => a.Phone)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Job, new { @class = "form-control col -12", @placeholder = "Employe Job " })
+                @Html.ValidationMessageFor(a => a.Job)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Adress, new { @class = "form-control col -12", @placeholder = "Employe Adress " })
+                @Html.ValidationMessageFor(a => a.Adress)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Salary, new { @class = "form-control col -12", @placeholder = "Employe Salary " })
+                @Html.ValidationMessageFor(a => a.Salary)
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success my-3 text-capitalize ">  Add </button>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+
+
+

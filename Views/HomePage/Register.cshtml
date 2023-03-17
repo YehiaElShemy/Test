@@ -1,0 +1,68 @@
+﻿@model projectMVC.viewModel.RegisterAdmin
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand text-uppercase  " href="#"> free <span class="text-info"> sms</span> </a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+            <a class="nav-link text-uppercase" href="@Url.Action("Index" , "HomePage")">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-uppercase" href="@Url.Action("LoginAdmin" , "HomePage")"> login Admin </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-uppercase" href="@Url.Action("LoginUser" , "HomePage")">  Login User  </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<div class="container d-flex align-items-center justify-content-center   " style="margin-top : 118px">
+
+    <div class="col-md-6 col-sm-12 col-12">
+        <h2 class="text-center text-success text-capitalize py-4 ">  Register For Free  </h2>
+
+        @using (Html.BeginForm())
+        {
+            <div class="form-group d-flex row">
+
+                @Html.TextBoxFor(a => a.AdminUserName, new { @class = " form-control col-12", @placeholder = "User Name " })
+                @Html.ValidationMessageFor(a => a.AdminUserName)
+            </div>
+            <div class="form-group d-flex row">
+
+                @Html.PasswordFor(a => a.AdminPassword, new { @class = "form-control col-12", @placeholder = "Password " })
+                @Html.ValidationMessageFor(a => a.AdminPassword)
+            </div>
+
+            <div class="form-group row">
+
+                @Html.TextBoxFor(a => a.Code, new { @class = "form-control col-12", @placeholder = "Code " })
+                @Html.ValidationMessageFor(a => a.Code)
+            </div>
+            <div class="form-group row">
+
+                @Html.LabelFor(a => a.BussinesType)
+                @Html.DropDownListFor(a => a.BussinesType, new SelectList(Enum.GetValues(typeof(projectMVC.enums.BussinessType))), new { @class = "form-control col-12" })
+                @Html.ValidationMessageFor(a => a.BussinesType)
+            </div>
+
+
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-success my-3 text-capitalize "> Register </button>
+            </div>
+
+        }
+
+    </div>
+
+</div>
+
+
+

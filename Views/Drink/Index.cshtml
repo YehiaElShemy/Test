@@ -1,0 +1,57 @@
+﻿@model IEnumerable<projectMVC.viewModel.DrinkViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+@if (ViewBag.type == projectMVC.enums.BussinessType.Coffie)
+{
+    @Html.Partial("_AdminCoffie")
+}
+else
+{
+    @Html.Partial("_AdminWorkspace")
+
+}
+
+
+
+<h1 class=" text-success text-center  my-3">  Manage your Drinks </h1>
+
+
+<a class="btn btn-success" href="@Url.Action("Create","Drink")"> Create New Drink </a>
+
+
+<table class="table table-hover">
+
+    <tr>
+        <td scope="col"> Name </td>
+        <td scope="col"> Buy </td>
+        <td scope="col"> Sale </td>
+        <td scope="col"> Profit </td>
+        <td scope="col"> Amount  </td>
+        <td scope="col"> Edit Drink </td>
+
+        <td> Delete Drink </td>
+
+    </tr>
+    @foreach (var item in Model)
+
+    {
+        <tr>
+            <td scope="row">@item.Name </td>
+            <td> @item.Buy </td>
+            <td> @item.Sale </td>
+            <td> @item.Profit </td>
+            <td> @item.Amonut </td>
+            <td>
+                <a class="btn btn-primary" href="@Url.Action("Edit","Drink",new {id =item.Id })"> Edit </a>
+            </td>
+
+            <td>
+                <a class="btn btn-danger" href="@Url.Action("Delete","Drink",new {id =item.Id })"> Delete </a>
+            </td>
+        </tr>
+    }
+</table>

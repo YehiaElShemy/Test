@@ -1,0 +1,206 @@
+﻿@model projectMVC.viewModel.DrinksAndSeetCasher
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row justify-content-center">
+    <h1 class="col-11 text-center"> Welecome Casher </h1>
+    <a class="btn btn-success col-1 " href="@Url.Action("Logout" , "WorkspaceCasher")">   log out </a>
+</div>
+
+
+
+<div class="container-fluid">
+
+    <div class="row text-center mt-3">
+        <div class="col-12 col-md-9  ">
+            <h2> menue  </h2>
+            <hr>
+            <div class="row p-3">
+                <h2 class="col-12"> Seets   </h2>
+                @foreach (var item in Model.Seets)
+                {
+                    <div class="col-lg-3">
+
+                        <button class="bg-success text-light mb-1 x clicked"> @item.Number </button>
+                        <br>
+                        <span id="salary">
+                            @item.Cost
+                        </span>
+
+                    </div>
+                }
+            </div>
+            <div class="row p-3">
+                <h2 class="col-12">  drinks    </h2>
+                @foreach (var item in Model.drinks)
+                {
+                    <div class="col-lg-3">
+
+                        <button class=" bg-success text-light mb-1 x" value="100" data="meet">@item.Name</button>
+                        <span id="salary">
+                            @item.Sale
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+            <div class="row p-3">
+                <input type="text" class="col-9" placeholder="amount" id="amount">
+                <button class="btn btn-outline-success  col-3" id="add"> Add </button>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <h2> the bill </h2>
+            <hr>
+            <div id="billdata">
+                <div class="row border-bottom mb-3 " id="header">
+                    <div class="col-3"> <h2 class="small"> name </h2> </div>
+                    <div class="col-3"> <h2 class="small"> price </h2> </div>
+                    <div class="col-3"> <h2 class="small"> amount </h2> </div>
+                    <div class="col-3"> <h2 class="small"> total price  </h2> </div>
+                </div>
+                <div id="formdata">
+
+
+                    <button class="col-12 btn btn-block btn-success text-capitalize" type="button" id="save"> submit </button>
+                </div>
+            </div>
+            <div class="row border-bottom ">
+                <div class="col-6"> <h2 class="text-capitalize"> total </h2> </div>
+                <div class="col-6"> <h2 id="result"> 0 </h2> </div>
+
+                <button id="remove" class="col-12 btn btn-block btn-danger text-capitalize"> empty bill </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+
+        let name = ""; let price = 0; let amount = 0; let totalPrice = 0;
+        console.log($(".clicked"))
+        $(".clicked").click(function () {
+           
+            this.classList.remove("bg-success");
+            this.classList.add("bg-danger");
+       
+
+        });
+        $(".clicked").dblclick(function () {
+          
+            this.classList.remove("bg-danger");
+            this.classList.add("bg-success");
+           
+
+        });
+
+        $(".x").click(function (event) {
+
+            price = Number($(this).siblings("#salary").text())
+
+            name = $(this).text();
+
+
+        });
+
+        $("#add").click(function () {
+
+            amount = Number($("#amount").val());
+            totalPrice = amount * price;
+            let row = `
+                        <div class="row border-bottom mb-3 removed">
+
+                                        <input  type="text"  class="col-3 need Names" disabled value = "${name}" name= "${name}"> </input>
+                                        <input class="col-3" disabled value =${price}> </input>
+                                        <input type="number" class="col-3 Amounts "  disabled value =${amount} name = "Amount"> </input>
+                                        <input class="col-3" disabled value =${totalPrice}> </input>
+
+                        </div>
+                        `;
+            $("#formdata").prepend(row);
+            $("#amount").val("")
+            $("#result").text(Number($("#result").text()) + totalPrice);
+
+        });
+        $("#remove").click(function () {
+
+            $(".removed").remove();
+            $("#result").text(0);
+
+
+        });
+        $("#save").click(function () {
+            let billName = document.getElementsByClassName("Names");
+            let billAmount = document.getElementsByClassName("Amounts");
+            let totalBill = document.getElementById("result");
+
+            console.log(billName)
+            console.log(billAmount)
+
+
+            let bill = new Object();
+            bill.Names = [];
+            bill.Amounts = [];
+            bill.Total = totalBill.innerText;
+
+            for (var i = 0; i < billName.length; i++) {
+                bill.Amounts.push(Number(billAmount[i].value))
+                bill.Names.push(billName[i].value)
+                //console.log(billName[i].value)
+                //console.log(Number(billAmount[i].value))
+                console.log(bill.Amounts)
+
+            }
+            if (bill != null) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/WorkspaceCasher/Sale",
+                        data: JSON.stringify(bill),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response != null) {
+                                alert("Name : " + response.Names + ", Amounts : " + response.Amounts);
+                            } else {
+                                alert("Something went wrong");
+                            }
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+
+            }
+        });
+
+
+
+
+
+
+
+    });
+
+
+
+
+
+
+
+</script>
+

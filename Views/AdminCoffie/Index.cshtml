@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_AdminCoffie")
+
+<h2 class="bg-info py-3 text-light text-center"> Coffie </h2>
+<div class="card">
+    <h5 class="card-header text-capitalize"> welecom Sir  </h5>
+    <div class="card-body">
+        <h5 class="card-title"> total profit @ViewBag.TotalBussinesProfit </h5>
+        <p class="card-text"> to see bill details click the buttom </p>
+        <a href="@Url.Action("Index" , "Bill")" class="btn btn-primary"> Bill Detail  </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> Total Requirement  </h5>
+                <div class="row">
+                    <p class="card-text col-6 text-capitalize">   rent  </p>
+                    <p class="card-text col-6">  @ViewBag.Rent   </p>
+
+                </div>
+                <div class="row">
+                    <p class="card-text col-6 text-capitalize">   Water Bill  </p>
+                    <p class="card-text col-6">   @ViewBag.WaterBill  </p>
+
+                </div>
+                <div class="row">
+                    <p class="card-text col-6 text-capitalize">   Electricity Bill   </p>
+                    <p class="card-text col-6">   @ViewBag.ElecBill  </p>
+
+                </div>
+                <div class="row">
+                    <p class="card-text col-6 text-capitalize">   total   </p>
+                    <p class="card-text col-6">   @ViewBag.totalReq </p>
+
+                </div>
+
+                <a href="@Url.Action("SetReq", "AdminCoffie")" class="btn btn-primary"> Edit  </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"> detailes  </h5>
+                <div class="row">
+                    <p class="card-text col-6 text-capitalize">   total employee salary   </p>
+                    <p class="card-text col-6"> @ViewBag.TotalEmpSalary   </p>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="card-text col-12 text-capitalize"> food  </p>
+                        <p class="card-text col-6 text-capitalize"> bay   </p>
+                        <p class="card-text col-6 text-capitalize">   @ViewBag.TotalFoodBayment  </p>
+                        <p class="card-text col-6 text-capitalize"> sale   </p>
+                        <p class="card-text col-6 text-capitalize">  @ViewBag.TotalFoodSale    </p>
+                        <p class="card-text col-6 text-capitalize"> profit   </p>
+                        <p class="card-text col-6 text-capitalize"> @ViewBag.FoodProfit  </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="card-text col-12 text-capitalize"> drinks  </p>
+                        <p class="card-text col-6 text-capitalize"> bay   </p>
+                        <p class="card-text col-6 text-capitalize"> @ViewBag.TotalDrinkBayment  </p>
+                        <p class="card-text col-6 text-capitalize"> sale   </p>
+                        <p class="card-text col-6 text-capitalize">  @ViewBag.TotalDrinkSale </p>
+                        <p class="card-text col-6 text-capitalize"> profit   </p>
+                        <p class="card-text col-6 text-capitalize">  @ViewBag.DrinksProfit  </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
